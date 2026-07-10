@@ -45,8 +45,6 @@ export const translations = {
     statsExpiringSoon: "ใกล้หมดอายุ",
     statsExpired: "หมดอายุแล้ว",
     // Repair
-    rentNav: "ยืม-คืน",
-    repairNav: "แจ้งซ่อม",
     repairTitle: "รายการแจ้งซ่อม",
     repairNew: "แจ้งซ่อมใหม่",
     repairEquipName: "ชื่ออุปกรณ์",
@@ -137,8 +135,6 @@ export const translations = {
     statsExpiringSoon: "Expiring Soon",
     statsExpired: "Expired",
     // Repair
-    rentNav: "Rent",
-    repairNav: "Repair",
     repairTitle: "Repair Requests",
     repairNew: "New Repair",
     repairEquipName: "Equipment Name",

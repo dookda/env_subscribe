@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import LangToggle from "@/components/LangToggle";
-import NavTabs from "@/components/NavTabs";
 import logo from "@/app/logo.png";
 
 export default function Header() {
@@ -18,9 +17,6 @@ export default function Header() {
             <LangToggle />
             <ThemeToggle />
           </div>
-        </div>
-        <div className="pb-2">
-          <NavTabs />
         </div>
       </div>
     </header>
