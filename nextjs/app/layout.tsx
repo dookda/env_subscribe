@@ -20,7 +20,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const lang = ((await cookies()).get("lang")?.value ?? "th") as Lang;
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

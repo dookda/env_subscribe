@@ -16,6 +16,21 @@ services:
       timeout: 5s
       retries: 5
 
+  # One-shot: applies pending Prisma migrations, then exits.
+  # Uses the builder stage, which has the full node_modules (Prisma CLI).
+  migrate:
+    container_name: store_migrate
+    build:
+      context: ./nextjs
+      dockerfile: Dockerfile
+      target: builder
+    command: npx prisma migrate deploy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
   nextjs:
     container_name: store_nextjs
     build:
@@ -31,6 +46,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
 volumes:
   postgres_data:
