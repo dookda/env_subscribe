@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <LangProvider initial={lang}>
           <div className="min-h-screen bg-surface-raised text-text-primary antialiased">
             <Header />
-            <main className="mx-auto max-w-5xl px-4 pb-6 pt-20">{children}</main>
+            <main className="mx-auto max-w-5xl px-4 pb-6 pt-28">{children}</main>
           </div>
         </LangProvider>
       </body>

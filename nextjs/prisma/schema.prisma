@@ -9,7 +9,7 @@ datasource db {
 }
 
 model EquipmentItem {
-  id            String    @id @default(cuid())
+  id            String          @id @default(cuid())
   equipmentName String
   model         String
   customerName  String?
@@ -17,13 +17,46 @@ model EquipmentItem {
   latitude      Float?
   longitude     Float?
   image         String?
-  inUse         Boolean   @default(false)
+  inUse         Boolean         @default(false)
   installedAt   DateTime?
   expiredAt     DateTime?
-  isArchived    Boolean   @default(false)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  isArchived    Boolean         @default(false)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 
   @@index([equipmentName])
   @@index([isArchived])
+}
+
+enum RepairStatus {
+  PENDING
+  IN_REPAIR
+  DONE
+  CANCELLED
+}
+
+model RepairRequest {
+  id              String        @id @default(cuid())
+
+  equipmentName   String
+  model           String?
+
+  reporterName    String
+  reporterPhone   String?
+
+  issueCategories String[]
+  issueNote       String?
+
+  images          String[]
+
+  status          RepairStatus  @default(PENDING)
+  checkInAt       DateTime?
+  checkOutAt      DateTime?
+  techNote        String?
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
 }

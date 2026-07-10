@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useLang } from "@/components/LangProvider";
@@ -8,6 +8,7 @@ import { useLang } from "@/components/LangProvider";
 export default function SearchInput({ defaultValue }: { defaultValue?: string }) {
   const { t } = useLang();
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [value, setValue] = useState(defaultValue ?? "");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -35,7 +36,9 @@ export default function SearchInput({ defaultValue }: { defaultValue?: string })
       } else {
         params.delete("search");
       }
-      router.replace(`/?${params.toString()}`);
+      const next = params.toString();
+      if (next === searchParams.toString()) return;
+      router.replace(`${pathname}${next ? `?${next}` : ""}`);
     }, 400);
 
     return () => { if (timer.current) clearTimeout(timer.current); };

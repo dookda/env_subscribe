@@ -54,7 +54,7 @@ export async function createEquipment(formData: FormData) {
     data: { ...result.data, ...(image ? { image } : {}) },
   });
 
-  revalidatePath("/");
+  revalidatePath("/rent");
   return { success: true };
 }
 
@@ -86,7 +86,7 @@ export async function updateEquipment(id: string, formData: FormData) {
 
   if (oldItem?.image) deleteImageFile(oldItem.image);
 
-  revalidatePath("/");
+  revalidatePath("/rent");
   revalidatePath(`/equipment/${id}`);
   return { success: true };
 }
@@ -102,6 +102,6 @@ export async function deleteEquipment(id: string) {
 
   if (item.image) deleteImageFile(item.image);
 
-  revalidatePath("/");
+  revalidatePath("/rent");
   return { success: true };
 }

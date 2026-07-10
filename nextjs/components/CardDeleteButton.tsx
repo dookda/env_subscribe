@@ -20,7 +20,7 @@ export default function CardDeleteButton({ id, variant = "icon" }: { id: string;
     await deleteEquipment(id);
     setLoading(false);
 
-    if (variant === "full") router.push("/");
+    if (variant === "full") router.push("/rent");
     router.refresh();
   };
 
